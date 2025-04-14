@@ -507,24 +507,6 @@ def show_analysis_page():
                     <p><strong>Interpretasi:</strong> Teks ini mengekspresikan sentimen {final_sentiment.lower()} terhadap program makan bergizi gratis.</p>
                 </div>
                 """, unsafe_allow_html=True)
-                
-                # # Tampilkan kata kunci yang terdeteksi
-                # if keyword_results['positive_matches'] or keyword_results['negative_matches']:
-                #     st.markdown("##### Kata Kunci Terdeteksi:")
-                    
-                #     if keyword_results['positive_matches']:
-                #         st.markdown(f"""
-                #         <div style="padding: 10px; border-radius: 5px; background-color: rgba(46, 204, 113, 0.2); margin-bottom: 10px;">
-                #             <strong>Positif:</strong> {', '.join(keyword_results['positive_matches'])}
-                #         </div>
-                #         """, unsafe_allow_html=True)
-                    
-                #     if keyword_results['negative_matches']:
-                #         st.markdown(f"""
-                #         <div style="padding: 10px; border-radius: 5px; background-color: rgba(231, 76, 60, 0.2); margin-bottom: 10px;">
-                #             <strong>Negatif:</strong> {', '.join(keyword_results['negative_matches'])}
-                #         </div>
-                #         """, unsafe_allow_html=True)
             
             with col2:
                 # Tampilkan gauge chart untuk skor sentimen
@@ -784,7 +766,7 @@ def main():
         model_type = st.selectbox(
             "Pilih algoritma AI yang akan digunakan:",
             ["LSTM", "BI-LSTM", "GRU"],
-            index=["LSTM", "BI-LSTM", "GRU"].index(st.session_state.get('model_type', 'BI-LSTM')),
+            index=["LSTM", "BI-LSTM", "GRU"].index(st.session_state.get('model_type', 'LSTM')),
             help="Pilih algoritma AI yang akan digunakan untuk analisis sentimen"
         )
 
