@@ -17,9 +17,27 @@ import plotly.express as px
 import plotly.graph_objects as go
 from wordcloud import WordCloud
 
-# Download required NLTK resources
-nltk.download('punkt')
-nltk.download('stopwords')
+# Force download the required NLTK resources directly and handle specific errors
+import nltk
+import os
+
+# Create NLTK data directory if it doesn't exist
+nltk_data_dir = os.path.join(os.path.expanduser('~'), 'nltk_data')
+os.makedirs(nltk_data_dir, exist_ok=True)
+
+# Force download resources with specific path
+try:
+    nltk.download('punkt', download_dir=nltk_data_dir)
+    nltk.download('stopwords', download_dir=nltk_data_dir)
+except Exception as e:
+    st.error(f"Failed to download NLTK resources: {e}")
+    
+    # Fallback: Try to create a minimal tokenizer function that doesn't rely on NLTK
+    def minimal_tokenize(text):
+        return text.lower().split()
+    
+    # Replace the standard tokenizer with our minimal version
+    word_tokenize = minimal_tokenize
 
 # Set konfigurasi halaman
 st.set_page_config(
