@@ -1,0 +1,12 @@
+streamlit==1.32.2
+numpy
+pandas
+re
+matplotlib
+seaborn
+tensorflow
+keras
+nltk
+Sastrawi
+plotly
+wordcloud
