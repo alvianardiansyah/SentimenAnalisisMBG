@@ -17,7 +17,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from wordcloud import WordCloud
 
-# Download NLTK resources (jika belum ada)
+# Download NLTK resources (if not already downloaded)
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
