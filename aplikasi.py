@@ -17,15 +17,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from wordcloud import WordCloud
 
-# Download NLTK resources (if not already downloaded)
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
+# Download required NLTK resources
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # Set konfigurasi halaman
 st.set_page_config(
