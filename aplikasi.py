@@ -171,11 +171,11 @@ def preprocess_text(text):
 def load_sentiment_model(model_type="BI-LSTM"):
     try:
         if model_type == "BI-LSTM":
-            model = load_model('D:\\My Data ALL\\Downloads\\tes\\model_BI_LSTM.h5')
+            model = load_model('model/model_BI_LSTM.h5')
         elif model_type == "GRU":
-            model = load_model('D:\\My Data ALL\\Downloads\\tes\\model_GRU.h5')
+            model = load_model('model/model_GRU.h5')
         elif model_type == "LSTM":
-            model = load_model('D:\\My Data ALL\\Downloads\\tes\\model_LSTM.h5')
+            model = load_model('model/model_LSTM.h5')
         else:
             st.error(f"Model type {model_type} tidak dikenali.")
             return None
@@ -352,11 +352,11 @@ def show_analysis_page():
         
         # Cek file-file yang diperlukan
         if model_type == "BI-LSTM":
-            model_path = 'D:\\My Data ALL\\Downloads\\tes\\model_BI_LSTM.h5'
+            model_path = 'model/model_BI_LSTM.h5'
         elif model_type == "GRU":
-            model_path = 'D:\\My Data ALL\\Downloads\\tes\\model_GRU.h5'
+            model_path = 'model/model_GRU.h5'
         else:  # LSTM
-            model_path = 'D:\\My Data ALL\\Downloads\\tes\\model_LSTM.h5'
+            model_path = 'model/model_LSTM.h5'
             
         tokenizer_path = 'tokenizer.pickle'
         
