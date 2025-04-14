@@ -17,27 +17,43 @@ import plotly.express as px
 import plotly.graph_objects as go
 from wordcloud import WordCloud
 
-# Force download the required NLTK resources directly and handle specific errors
-import nltk
-import os
+def initialize_nltk():
+    try:
+        # Set NLTK data path to a directory we have write access to
+        nltk_data_dir = os.path.join(os.getcwd(), 'nltk_data')
+        os.makedirs(nltk_data_dir, exist_ok=True)
+        nltk.data.path.append(nltk_data_dir)
+        
+        # Download required resources with error handling
+        required_resources = ['punkt', 'stopwords', 'wordnet', 'omw-1.4']
+        
+        for resource in required_resources:
+            try:
+                nltk.download(resource, download_dir=nltk_data_dir)
+            except Exception as e:
+                st.warning(f"Gagal mengunduh resource NLTK '{resource}': {str(e)}")
+                
+    except Exception as e:
+        st.error(f"Error inisialisasi NLTK: {str(e)}")
 
-# Create NLTK data directory if it doesn't exist
-nltk_data_dir = os.path.join(os.path.expanduser('~'), 'nltk_data')
-os.makedirs(nltk_data_dir, exist_ok=True)
+# Panggil fungsi inisialisasi
+initialize_nltk()
 
-# Force download resources with specific path
-try:
-    nltk.download('punkt', download_dir=nltk_data_dir)
-    nltk.download('stopwords', download_dir=nltk_data_dir)
-except Exception as e:
-    st.error(f"Failed to download NLTK resources: {e}")
-    
-    # Fallback: Try to create a minimal tokenizer function that doesn't rely on NLTK
-    def minimal_tokenize(text):
-        return text.lower().split()
-    
-    # Replace the standard tokenizer with our minimal version
-    word_tokenize = minimal_tokenize
+# Fallback tokenizer yang lebih robust
+def robust_tokenizer(text):
+    try:
+        # Coba gunakan word_tokenize standar
+        return word_tokenize(text)
+    except:
+        try:
+            # Fallback 1: Split sederhana dengan regex
+            return re.findall(r"\w+", text.lower())
+        except:
+            # Fallback 2: Split paling dasar
+            return text.lower().split()
+
+# Gunakan tokenizer yang aman
+safe_word_tokenize = robust_tokenizer
 
 # Set konfigurasi halaman
 st.set_page_config(
@@ -146,37 +162,48 @@ def calculate_keyword_score(positive_count, negative_count):
 
 # Fungsi preprocessing teks
 def preprocess_text(text):
-    # Lowercase
-    text = text.lower()
+    try:
+        # Lowercase
+        text = text.lower()
+        
+        # Hapus URL
+        text = re.sub(r'http\S+', '', text)
+        
+        # Hapus username Twitter
+        text = re.sub(r'@\w+', '', text)
+        
+        # Hapus hashtag
+        text = re.sub(r'#\w+', '', text)
+        
+        # Hapus angka dan tanda baca
+        text = re.sub(r'[^\w\s]', '', text)
+        text = re.sub(r'\d+', '', text)
+        
+        # Tokenisasi dengan fallback
+        tokens = safe_word_tokenize(text)
+        
+        try:
+            # Hapus stopwords (dengan fallback jika stopwords tidak tersedia)
+            stop_words = set(stopwords.words('indonesian')) if 'stopwords' in nltk.data.path else set()
+            tokens = [word for word in tokens if word not in stop_words]
+        except:
+            tokens = tokens  # Jika stopwords gagal, gunakan tokens asli
+            
+        # Stemming dengan Sastrawi
+        try:
+            factory = StemmerFactory()
+            stemmer = factory.create_stemmer()
+            tokens = [stemmer.stem(word) for word in tokens]
+        except:
+            tokens = tokens  # Jika stemming gagal, gunakan tokens asli
+        
+        # Gabungkan kembali
+        processed_text = ' '.join(tokens)
+        return processed_text, tokens
     
-    # Hapus URL
-    text = re.sub(r'http\S+', '', text)
-    
-    # Hapus username Twitter
-    text = re.sub(r'@\w+', '', text)
-    
-    # Hapus hashtag
-    text = re.sub(r'#\w+', '', text)
-    
-    # Hapus angka dan tanda baca
-    text = re.sub(r'[^\w\s]', '', text)
-    text = re.sub(r'\d+', '', text)
-    
-    # Tokenisasi
-    tokens = word_tokenize(text)
-    
-    # Hapus stopwords
-    stop_words = set(stopwords.words('indonesian'))
-    tokens = [word for word in tokens if word not in stop_words]
-    
-    # Stemming
-    factory = StemmerFactory()
-    stemmer = factory.create_stemmer()
-    tokens = [stemmer.stem(word) for word in tokens]
-    
-    # Gabungkan kembali
-    processed_text = ' '.join(tokens)
-    return processed_text, tokens
+    except Exception as e:
+        st.error(f"Error dalam preprocessing teks: {str(e)}")
+        return text.lower(), text.lower().split()  # Fallback paling dasar
 
 # Function to load model (cached agar tidak reload setiap interaksi)
 @st.cache_resource
