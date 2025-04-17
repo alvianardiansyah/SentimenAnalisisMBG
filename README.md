@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="asset/Deep Learning.png" width="300" alt="Program Makan Bergizi Gratis">
+  <img src="asset/Deep Learning.png" width="600" alt="Program Makan Bergizi Gratis">
 </p>
 
 <div align="center">
