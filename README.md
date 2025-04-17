@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="asset/Deep Learning.png" width="300" alt="Program Makan Bergizi Gratis">
+</p>
+
 <div align="center">
 
 # Analisis Sentimen Masyarakat terhadap Program Makan Bergizi Gratis Berdasarkan Komentar di Media Sosial X menggunakan NLP
