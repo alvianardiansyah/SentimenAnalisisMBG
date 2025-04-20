@@ -31,8 +31,10 @@ Metode **LSTM (Long Short-Term Memory)**, **BiLSTM**, dan **GRU** digunakan untu
 - Reyvan Revolusioner Ar (E1E122077)  
 - Febri Haerani (E1E122097)
 
+<p align="center">
 ## Fitur Pilih Model
-<img src="asset/Screenshot 2025-04-20 201325.png" width="90">
+  <img src="asset/Screenshot 2025-04-20 201325.png" width="500">
+</p>
 
 ## Fitur Analisis Sentimen
 <img src="asset/Screenshot 2025-04-20 201013.png" width="900">
