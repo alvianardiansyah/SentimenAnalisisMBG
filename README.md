@@ -30,3 +30,6 @@ Metode **LSTM (Long Short-Term Memory)**, **BiLSTM**, dan **GRU** digunakan untu
 - Harnelia (E1E122056)  
 - Reyvan Revolusioner Ar (E1E122077)  
 - Febri Haerani (E1E122097)
+
+## Fitur Pilih Model
+<img src="asset/Deep Learning.png" width="900">
