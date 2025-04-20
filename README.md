@@ -32,7 +32,7 @@ Metode **LSTM (Long Short-Term Memory)**, **BiLSTM**, dan **GRU** digunakan untu
 - Febri Haerani (E1E122097)
 
 ## Fitur Pilih Model
-<img src="asset/Screenshot 2025-04-20 201325.png" width="900">
+<img src="asset/Screenshot 2025-04-20 201325.png" width="90">
 
 ## Fitur Analisis Sentimen
 <img src="asset/Screenshot 2025-04-20 201013.png" width="900">
@@ -43,7 +43,7 @@ Metode **LSTM (Long Short-Term Memory)**, **BiLSTM**, dan **GRU** digunakan untu
 ### Visualisas Hasil
 <img src="asset/Screenshot 2025-04-20 201104.png" width="900">
 <img src="asset/Screenshot 2025-04-20 201117.png" width="900">
-<img src="aasset/Screenshot 2025-04-20 201137.png" width="900">
+<img src="asset/Screenshot 2025-04-20 201137.png" width="900">
 
 ## Fitur Bantuan Pengguna
 <img src="asset/Screenshot 2025-04-20 201208.png" width="900">
