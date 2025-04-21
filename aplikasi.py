@@ -353,7 +353,7 @@ def create_sentiment_pie(score):
 # Fungsi untuk halaman analisis
 def show_analysis_page():
     # Judul aplikasi dengan styling
-    st.markdown('<p class="title-text">Dibuat Oleh Kelompok 3</p>', 
+    st.markdown('<p class="title-text">Analisis Sentimen Makan Bergizi Gratis\nDibuat Oleh Kelompok 3</p>', 
                 unsafe_allow_html=True)
     
     # Ambil algoritma yang dipilih dari sidebar
