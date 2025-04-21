@@ -353,7 +353,7 @@ def create_sentiment_pie(score):
 # Fungsi untuk halaman analisis
 def show_analysis_page():
     # Judul aplikasi dengan styling
-    st.markdown('<p class="title-text">Analisis Sentimen Makan Bergizi Gratis\nDibuat Oleh Kelompok 3</p>', 
+    st.markdown('<p class="title-text">Analisis Sentimen Makan Bergizi Gratis</p>', 
                 unsafe_allow_html=True)
     
     # Ambil algoritma yang dipilih dari sidebar
@@ -708,7 +708,7 @@ def show_about_page():
     st.markdown("""
     <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center; margin-top: 30px;">
         <p style="color: #7F8C8D; font-size: 14px;">© 2025 - Aplikasi Analisis Sentimen Program Makan Bergizi Gratis</p>
-        <p style="color: #95A5A6; font-size: 12px;">Dikembangkan dengan ❤️ untuk melihat sentimen publik terhadap program makan bergizi gratis</p>
+        <p style="color: #95A5A6; font-size: 12px;">Dikembangkan Oleh Kelompok 3</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -722,7 +722,7 @@ def main():
         st.markdown("""
         <div style="text-align: center; margin-bottom: 20px;">
             <h2 style="color: #389cff; display: flex; align-items: center; justify-content: center;">
-                <span style="color: #ff5050; font-size: 1.5em; margin-right: 8px;">🍎</span> 
+                <span style="color: #ff5050; font-size: 1.5em; margin-right: 8px;">🥗</span> 
                 <span>Analisis Sentimen</span>
             </h2>
             <p style="color: #7F8C8D; margin-top: -10px;">Program Makan Bergizi</p>
